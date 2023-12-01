@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2day.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E9%83%BD%E9%81%93%E5%BA%9C%E7%9C%8C%E3%81%A8%E7%9C%8C%E5%BA%81%E6%89%80%E5%9C%A8%E5%9C%B0">都道府県と県庁所在地</h1>
+<p><strong>頑張って覚えてください</strong><br>
+<strong>覚えないと何も始まりません</strong><br>
+<strong>下に覚えづらいのをリストアップします</strong></p>
+<h2 id="%E7%9C%8C%E5%BA%81%E6%89%80%E5%9C%A8%E5%9C%B0%E3%81%A8%E7%9C%8C%E5%90%8D%E3%81%8C%E7%95%B0%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE">県庁所在地と県名が異なるもの</h2>
+<ul>
+<li>札幌市...北海道</li>
+<li>盛岡市...岩手県</li>
+<li>仙台市...宮城県</li>
+<li>前橋市...群馬県</li>
+<li>宇都宮(うつのみや)市...栃木県</li>
+<li>水戸市...茨城県</li>
+<li>横浜市...神奈川県</li>
+<li>甲府市...山梨県</li>
+<li>名古屋(なごや)市...愛知県</li>
+<li>津(つ)市...和歌山県</li>
+<li>大津(おおつ)市...滋賀県</li>
+<li>神戸市...兵庫県</li>
+<li>松江市...島根県</li>
+<li>高松市...香川県</li>
+<li>松山市...愛媛県</li>
+<li>那覇市...沖縄県</li>
+</ul>
+<h1 id="%E4%B8%96%E7%95%8C%E3%81%AE%E5%9C%B0%E5%BD%A2">世界の地形</h1>
+<h2 id="%E3%81%93%E3%82%8C%E3%81%95%E3%81%88%E8%A6%9A%E3%81%88%E3%82%8D%E3%82%AF%E3%82%BD%E3%83%87%E3%82%AB%E5%B1%B1%E8%84%88%EF%BC%94%E3%81%A4">これさえ覚えろ！クソデカ山脈４つ！！</h2>
+<ul>
+<li>アンデス山脈...南米西部</li>
+<li>ロッキー山脈...北米西部</li>
+<li>ヒマラヤ山脈...インドの上</li>
+<li>アルプス山脈...ヨーロッパ、イタリアの上、ドイツの下。</li>
+</ul>
+<h2 id="%E9%80%A0%E5%B1%B1%E5%B8%AF%E5%B1%B1%E3%81%A8%E3%81%8B%E7%81%AB%E5%B1%B1%E3%81%8C%E3%81%82%E3%82%8B%E3%82%84%E3%81%A4%E5%9C%B0%E9%9C%87%E3%81%8C%E5%A4%9A%E3%81%84">造山帯(山とか火山があるやつ、地震が多い)</h2>
+<ul>
+<li>アルプス・ヒマラヤ造山帯...ユーラシア大陸の下部を横断。</li>
+<li>環太平洋造山帯...太平洋の周り(日本、ロッキー、アンデスを含む。)</li>
+</ul>
+<h2 id="%E5%AE%89%E5%AE%9A%E5%A4%A7%E9%99%B8">安定大陸</h2>
+<p>火山活動がほとんど起きない場所。地形は侵食や風化で脆くなっている。</p>
+<h1 id="%E6%97%A5%E6%9C%AC%E3%81%AE%E5%9C%B0%E5%BD%A2">日本の地形</h1>
+<h2 id="%E6%B5%B7%E5%B2%B8">海岸</h2>
+<ul>
+<li><strong>リアス海岸</strong>...山地であった場所の谷に海水が入り込んでできる。<br>
+例...三陸海岸(宮城県)、志摩半島(三重県)など</li>
+<li><strong>砂浜海岸</strong>...そのまま。場所によっては砂丘が発達している。</li>
+</ul>
+<h2 id="%E5%B1%B1%E8%84%88">山脈</h2>
+<ul>
+<li>奥羽山脈...東北を縦に貫く。</li>
+<li>日本アルプス...西から飛騨、木曽、赤石の各山脈。中部地方にある。</li>
+</ul>
+<h2 id="%E6%B2%B3%E5%B7%9D">河川</h2>
+<ul>
+<li>信濃川...No1</li>
+<li>利根川...No2</li>
+</ul>
+<h2 id="%E3%82%88%E3%81%8F%E5%87%BA%E3%82%8B%E5%9C%B0%E5%BD%A2%E3%81%BB%E3%81%BC%E6%AF%8E%E5%9B%9E%E5%87%BA%E3%81%BE%E3%81%99"><strong>よく出る地形(ほぼ毎回出ます)</strong></h2>
+<ul>
+<li><strong>扇状地</strong>
+山の麓にある侵食で削られた土地。資料集で見て。</li>
+<li><strong>三角州</strong>
+河口にある三角形の島のような土地。これも資料集で見て。</li>
+</ul>
+<h1 id="%E6%B0%97%E5%80%99%E8%87%AA%E5%88%86%E3%81%A7%E9%9B%A8%E6%B8%A9%E5%9B%B3%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%AD">気候(自分で雨温図を確認してね)</h1>
+<h2 id="%E7%B7%8F%E8%AB%96">総論</h2>
+<p><strong>日本は温帯です！！</strong></p>
+<h2 id="%E5%8C%97%E6%B5%B7%E9%81%93">北海道</h2>
+<p>見分け方...<strong>冬の気温がマイナス</strong></p>
+<h2 id="%E5%A4%AA%E5%B9%B3%E6%B4%8B%E5%81%B4">太平洋側</h2>
+<p>見分け方...<strong>夏の降水量が多い</strong></p>
+<h2 id="%E4%B8%AD%E5%A4%AE%E9%AB%98%E5%9C%B0%E9%95%B7%E9%87%8E%E3%81%A8%E3%81%8B%E3%81%AE%E5%B1%B1%E3%81%AE%E4%B8%8A">中央高地(長野とかの山の上)</h2>
+<p>見分け方...<strong>全体的に涼しく雨が少ない</strong></p>
+<h2 id="%E6%97%A5%E6%9C%AC%E6%B5%B7%E5%81%B4">日本海側</h2>
+<p>見分け方...<strong>冬の降水量が多い(雪)</strong></p>
+<h2 id="%E7%80%AC%E6%88%B8%E5%86%85%E7%80%AC%E6%88%B8%E5%86%85%E6%B5%B7%E3%81%AE%E5%91%A8%E3%82%8A">瀬戸内(瀬戸内海の周り)</h2>
+<p>見分け方...<strong>雨が少ない</strong></p>
+<h2 id="%E5%8D%97%E8%A5%BF%E8%AB%B8%E5%B3%B6%E6%B2%96%E7%B8%84">南西諸島=沖縄</h2>
+<p>見分け方...<strong>ずっと熱くて雨多い</strong></p>
+<h1 id="%E6%B5%B7%E6%B5%81%E5%A0%B4%E6%89%80%E3%81%AF%E8%B3%87%E6%96%99%E9%9B%86%E3%81%A7%E5%9C%B0%E5%9B%B3%E3%82%92%E3%81%BF%E3%81%A6">海流(場所は資料集で地図をみて)</h1>
+<h2 id="%E6%9A%96%E6%B5%81%E3%81%82%E3%81%9F%E3%81%9F%E3%81%8B%E3%81%84%E5%8D%97%E3%81%8B%E3%82%89%E5%8C%97%E3%81%AB%E6%B5%81%E3%82%8C%E3%82%8B">暖流(あたたかい、南から北に流れる。)</h2>
+<ul>
+<li><strong>日本海流(<em>親潮</em>)</strong>...太平洋側で南から日本へ流れる。</li>
+<li><strong>対馬海流</strong>...日本海側で南から、<em>対馬</em>(韓国と日本の間)を通って日本に流れる。</li>
+</ul>
+<h2 id="%E5%AF%92%E6%B5%81%E5%86%B7%E3%81%9F%E3%81%84%E5%8C%97%E3%81%8B%E3%82%89%E5%8D%97%E3%81%AB%E6%B5%81%E3%82%8C%E3%82%8B">寒流(冷たい、北から南に流れる。)</h2>
+<ul>
+<li><strong>千島海流(<em>親潮</em>)</strong>...太平洋側で千島(北方領土あたりの島)</li>
+<li><strong>リマン海流</strong>...日本海側で北(樺太あたり)から日本に流れる。</li>
+</ul>
+
+</body>
+</html>
